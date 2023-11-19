@@ -3,12 +3,16 @@ import { useFetchCountries } from "hooks";
 
 export const Home = () => {
   const { countries, loader, error } = useFetchCountries();
-  console.log("countries: ", countries);
-
+  
   return (
     <Section>
       <Container>
-        <h2>Home</h2>
+        {loader && <Loader/>}
+        {error && <Heading
+        textAlign ='center'>Something went wrong</Heading>}
+        {countries.length > 0 && <CountryList
+        countries={countries}/>}
+
       </Container>
     </Section>
   );
